@@ -49,8 +49,9 @@ public class UserController {
 
     @ApiOperation("扣减用户余额")
     @PutMapping("/{id}/deduct/{amount}")
-    public List<UserVO> deductUserBalance(@ApiParam("用户id") @PathVariable("id") Long id, @ApiParam("扣减金额") @PathVariable("amount") Long amount) {
-        List<User> userList = userService.listByIds(ids);
-        return BeanUtil.copyToList(userList, UserVO.class);
+    public void deductUserBalance(
+            @ApiParam("用户id") @PathVariable("id") Long id,
+            @ApiParam("扣减金额") @PathVariable("amount") Integer amount) {
+        userService.deductBalance(id, amount);
     }
 }

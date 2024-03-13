@@ -17,7 +17,7 @@ public class User {
 
     private Integer sex;
 
-    private String idNumber;
+    private Integer balance;
 
-    private String content;
+    private Integer status;
 }

@@ -19,9 +19,9 @@ public class UserVO {
     @ApiModelProperty("性别")
     private Integer sex;
 
-    @ApiModelProperty("身份证号")
-    private String idNumber;
+    @ApiModelProperty("余额")
+    private Integer balance;
 
-    @ApiModelProperty("备注")
-    private String content;
+    @ApiModelProperty("状态")
+    private Integer status;
 }
