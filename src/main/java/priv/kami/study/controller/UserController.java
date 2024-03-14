@@ -7,6 +7,7 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.web.bind.annotation.*;
 import priv.kami.study.dto.UserDTO;
 import priv.kami.study.po.User;
+import priv.kami.study.query.UserQuery;
 import priv.kami.study.service.IUserService;
 import priv.kami.study.vo.UserVO;
 
@@ -38,8 +39,7 @@ public class UserController {
     @ApiOperation("根据id查询用户")
     @GetMapping("{id}")
     public UserVO getUserById(@ApiParam("用户id") @PathVariable("id") Long id) {
-        User user = userService.getById(id);
-        return BeanUtil.copyProperties(user, UserVO.class);
+        return userService.queryUserAndAddressById(id);
     }
 
     @ApiOperation("根据id批量查询用户")
@@ -51,9 +51,16 @@ public class UserController {
 
     @ApiOperation("扣减用户余额")
     @PutMapping("/{id}/deduct/{amount}")
-    public void deductUserBalance(
+    public Integer deductUserBalance(
             @ApiParam("用户id") @PathVariable("id") Long id,
             @ApiParam("扣减金额") @PathVariable("amount") Integer amount) {
-        userService.deductBalance(id, amount);
+        return userService.deductBalance(id, amount);
+    }
+
+    @ApiOperation("多条件查询用户")
+    @GetMapping("/list")
+    public List<UserVO> queryUsers(UserQuery userQuery) {
+        List<User> userList = userService.queryUsers(userQuery.getName(), userQuery.getStatus(), userQuery.getMinBalance(), userQuery.getMaxBalance());
+        return BeanUtil.copyToList(userList, UserVO.class);
     }
 }
