@@ -18,6 +18,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         }
         // 校验余额是否充足
         Integer balance =  user.getBalance();
+        System.out.println(balance);
+        System.out.println(amount);
+        System.out.println(balance < amount);
         if(balance < amount) {
             throw new RuntimeException("用户余额不足，无法扣减");
         }

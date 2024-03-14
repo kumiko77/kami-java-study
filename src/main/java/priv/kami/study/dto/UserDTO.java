@@ -8,9 +8,9 @@ import lombok.Data;
 @Data
 public class UserDTO {
 
-    @ApiModelProperty("id")
-    @TableId(type = IdType.AUTO)
-    private Integer id;
+//    @ApiModelProperty("id")
+//    @TableId(type = IdType.AUTO)
+//    private Integer id;
 
     @ApiModelProperty("姓名")
     private String name;
@@ -21,8 +21,8 @@ public class UserDTO {
     @ApiModelProperty("性别")
     private Integer sex;
 
-    @ApiModelProperty("余额")
-    private Integer balance;
+//    @ApiModelProperty("余额")
+//    private Integer balance;
 
     @ApiModelProperty("状态")
     private Integer status;

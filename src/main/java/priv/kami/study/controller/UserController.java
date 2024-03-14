@@ -24,6 +24,8 @@ public class UserController {
     @PostMapping
     public void saveUser(@RequestBody UserDTO userDTO) {
         User user = BeanUtil.copyProperties(userDTO, User.class);
+        // 设置默认余额
+        user.setBalance(100);
         userService.save(user);
     }
 
